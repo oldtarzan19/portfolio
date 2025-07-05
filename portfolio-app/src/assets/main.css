@@ -1,1 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #FCA311;  /* Narancs - fő accent szín */
+    --color-secondary: #14213D; /* Sötétkék - másodlagos háttér */
+    --color-dark: #000000;  /* Fekete - fő háttér */
+    --color-light: #E5E5E5; /* Világosszürke - szövegek */
+    --color-white: #FFFFFF; /* Fehér - fő szöveg */
+
+    --font-jetbrains: 'JetBrains Mono', monospace;
+}

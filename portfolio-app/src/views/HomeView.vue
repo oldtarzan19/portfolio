@@ -3,9 +3,9 @@
 
 <template>
   <main>
-    <div class="min-h-screen bg-gray-900 text-white">
+    <div class="min-h-screen bg-dark text-white">
       <!-- Hero Section -->
-      <section id="hero" class="h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800">
+      <section id="hero" class="h-screen flex items-center justify-center bg-gradient-to-br from-dark to-gray-800">
         <div class="text-center">
           <h1 class="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
             Szia, én vagyok [Neved]
