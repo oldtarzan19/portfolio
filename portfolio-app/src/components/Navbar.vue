@@ -5,7 +5,7 @@
       :class="[
         'transition-all duration-500 ease-out z-50 font-jetbrains',
         isSticky
-          ? 'fixed top-0 left-1/2 transform -translate-x-1/2 w-[95%] max-w-4xl bg-dark/95 backdrop-blur-md border border-gray-700/50 rounded-2xl shadow-2xl mt-4'
+          ? 'fixed top-0 left-1/2 transform -translate-x-1/2 w-[95%] max-w-4xl bg-dark/95 backdrop-blur-md border border-primary/50 rounded-2xl shadow-2xl mt-4'
           : 'absolute top-5 left-1/2 transform -translate-x-1/2 w-[90%] max-w-3xl bg-secondary/80 backdrop-blur-sm border border-gray-600/30 rounded-xl shadow-lg'
       ]"
       ref="navbar"
@@ -25,7 +25,7 @@
           >
             {{ item.name }}
             <!-- Hover underline effect -->
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary/90 transition-all duration-300 group-hover:w-full"></span>
           </a>
         </div>
       </div>
