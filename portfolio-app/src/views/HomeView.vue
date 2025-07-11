@@ -1,20 +1,13 @@
 <script setup>
+import Hero from '@/components/Hero.vue'
 </script>
 
 <template>
   <main>
     <div class="min-h-screen bg-dark text-white">
       <!-- Hero Section -->
-      <section id="hero" class="h-screen flex items-center justify-center bg-gradient-to-br from-dark to-gray-800">
-        <div class="text-center">
-          <h1 class="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-            Szia, én vagyok [Neved]
-          </h1>
-          <p class="text-xl text-gray-300 mb-8">Full Stack Developer</p>
-          <div class="text-gray-400">
-            Görgess le, hogy lásd a navbar animációját! 👇
-          </div>
-        </div>
+      <section id="hero" class="h-screen flex items-center justify-center">
+       <Hero/>
       </section>
 
       <!-- About Section -->
