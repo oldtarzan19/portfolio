@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark to-primary/30"
+    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark to-primary/30 animate-glow"
   >
     <div
       class="flex flex-col items-start pl-16 justify-center h-screen w-full text-white space-y-5"
@@ -161,4 +161,15 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+@keyframes glow {
+  0%, 100%   { --tw-gradient-to: #FCA311; }
+  33%        { --tw-gradient-to: #E5E5E5; }
+  66%        { --tw-gradient-to: #14213D; }
+}
+
+.animate-glow {
+  animation: glow 6s infinite;
+}
+
+</style>
