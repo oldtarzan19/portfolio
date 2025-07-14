@@ -1,5 +1,8 @@
 <script setup>
 import Hero from '@/components/Hero.vue'
+import Services from '@/components/Services.vue'
+
+
 </script>
 
 <template>
@@ -11,20 +14,8 @@ import Hero from '@/components/Hero.vue'
       </section>
 
       <!-- About Section -->
-      <section id="rolam" class="min-h-screen py-20 px-8 bg-gray-800">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold mb-8 text-center">Rólam</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-gray-700/50 p-6 rounded-xl">
-              <h3 class="text-xl font-semibold mb-4">Tapasztalat</h3>
-              <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-            <div class="bg-gray-700/50 p-6 rounded-xl">
-              <h3 class="text-xl font-semibold mb-4">Készségek</h3>
-              <p class="text-gray-300">Vue.js, React, Node.js, Python, PostgreSQL, MongoDB, Docker, AWS</p>
-            </div>
-          </div>
-        </div>
+      <section id="service">
+        <Services/>
       </section>
 
       <!-- Projects Section -->

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import BaseButton from '@/components/global/BaseButton.vue'
 
 const scrollToContact = () => {
   const contactSection = document.getElementById('kapcsolat')
@@ -104,17 +105,12 @@ onBeforeUnmount(() => {
 
         <!-- Buttons -->
         <div class="flex pt-4">
-          <button
-            class="px-8 py-4 border-2 border-primary text-white rounded-2xl font-semibold duration-500 hover:bg-primary hover:border-black hover:text-black transition-colors"
-            @click.stop="scrollToContact"
-          >
-            Indítsuk el a weboldalad!
-          </button>
+          <BaseButton @click="scrollToContact"> Indítsuk el a weboldalad! </BaseButton>
         </div>
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center h-screen w-full">
+    <div class="flex flex-col items-center justify-center h-screen w-full animate-float">
       <img src="@/assets/hero.png" alt="Hero Image" class="w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
@@ -134,7 +130,21 @@ onBeforeUnmount(() => {
   }
 }
 
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .animate-glow {
   animation: glow 6s infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 </style>
