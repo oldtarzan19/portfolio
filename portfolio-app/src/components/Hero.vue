@@ -76,7 +76,7 @@ onBeforeUnmount(() => {
       <!-- Main heading -->
       <div class="space-y-3">
         <div class="text-left">
-          <h1 class="text-6xl font-bold leading-tight space-x-3">
+          <h1 class="text-6xl font-bold leading-tight flex flex-col md:flex-row md:space-x-3">
             <span class="font-jetbrains">Weboldal</span>
             <transition
               enter-active-class="transition-opacity duration-500"
@@ -86,7 +86,11 @@ onBeforeUnmount(() => {
               leave-from-class="opacity-100"
               leave-to-class="opacity-0"
             >
-              <span v-if="show" :key="currentLabel" class="text-light text-2xl inline-block">
+              <span
+                v-if="show"
+                :key="currentLabel"
+                class="text-light text-2xl inline-block whitespace-nowrap"
+              >
                 {{ currentLabel }}
               </span>
             </transition>
