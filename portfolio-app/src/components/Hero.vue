@@ -76,7 +76,9 @@ onBeforeUnmount(() => {
       <!-- Main heading -->
       <div class="space-y-3">
         <div class="text-left">
-          <h1 class="text-6xl font-bold leading-tight flex flex-col md:flex-row md:space-x-3">
+          <h1
+            class="text-6xl font-bold leading-tight flex flex-col items-start md:flex-row md:space-x-3 md:items-baseline"
+          >
             <span class="font-jetbrains">Weboldal</span>
             <transition
               enter-active-class="transition-opacity duration-500"
