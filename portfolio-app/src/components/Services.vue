@@ -11,13 +11,15 @@ const services = [
   {
     icon: Palette,
     title: 'Egyedi webdesign',
-    description: 'Professzionális, személyre szabott arculat, amely tökéletesen illeszkedik a márkádhoz, és kitűnik a versenytársak közül. Modern, esztétikus megjelenés, ami első látásra megfogja a látogatókat és növeli a bizalmat.',
+    description:
+      'Professzionális, személyre szabott arculat, amely tökéletesen illeszkedik a márkádhoz, és kitűnik a versenytársak közül. Modern, esztétikus megjelenés, ami első látásra megfogja a látogatókat és növeli a bizalmat.',
     delay: 0,
   },
   {
     icon: Smartphone,
     title: 'Reszponzív fejlesztés',
-    description: 'Teljesen mobilbarát weboldal, amely minden eszközön – legyen az telefon, tablet vagy asztali számítógép – gyorsan és hibátlanul jelenik meg. Optimalizált felhasználói élmény minden kijelzőn, hogy ne veszíts el egy látogatót sem.',
+    description:
+      'Teljesen mobilbarát weboldal, amely minden eszközön – legyen az telefon, tablet vagy asztali számítógép – gyorsan és hibátlanul jelenik meg. Optimalizált felhasználói élmény minden kijelzőn, hogy ne veszíts el egy látogatót sem.',
     delay: 400,
   },
   {
@@ -157,11 +159,6 @@ onBeforeUnmount(() => {
                   {{ service.description }}
                 </p>
               </div>
-
-<!--              &lt;!&ndash; Hover accent line &ndash;&gt;
-              <div
-                class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full"
-              ></div>-->
             </div>
           </transition>
         </div>

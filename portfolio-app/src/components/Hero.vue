@@ -13,7 +13,7 @@ const labels = [
   'kisvállalkozásoknak',
   'masszőröknek',
   'fodrászoknak',
-  'egyéni vállalkozóknak',
+  'vállalkozóknak',
   'éttermeknek',
   'kávézóknak',
   'szépségszalonoknak',
@@ -33,11 +33,7 @@ const labels = [
   'szabadúszóknak',
   'művészeknek',
   'ingatlanügynökségeknek',
-  'építőipari cégeknek',
   'szállásoknak',
-  'turisztikai szolgáltatóknak',
-  'kis boltoknak',
-  'online szolgáltatóknak',
 ]
 
 const currentIndex = ref(0)
@@ -54,7 +50,7 @@ onMounted(() => {
       currentIndex.value = (currentIndex.value + 1) % labels.length
       currentLabel.value = labels[currentIndex.value]
       show.value = true
-    }, 500) // duration-500 értéke
+    }, 900) // duration-500 értéke
   }, 3000)
 })
 onBeforeUnmount(() => {
@@ -87,7 +83,7 @@ onBeforeUnmount(() => {
               leave-from-class="opacity-100"
               leave-to-class="opacity-0"
             >
-              <span v-if="show" :key="currentLabel" class="text-light text-2xl inline-block">
+              <span v-if="show" :key="currentLabel" class="text-light text-2xl">
                 {{ currentLabel }}
               </span>
             </transition>
@@ -111,7 +107,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="flex flex-col items-center justify-center h-screen w-full animate-float">
-      <img src="@/assets/hero.png" alt="Hero Image" class="w-3/4 h-auto object-cover rounded-lg" />
+      <img src="@/assets/logo_transparent.png" alt="Hero Image" class="w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
 </template>
@@ -120,13 +116,10 @@ onBeforeUnmount(() => {
 @keyframes glow {
   0%,
   100% {
-    --tw-gradient-to: #fdcf5d;
-  }
-  33% {
-    --tw-gradient-to: #fca311;
+    --tw-gradient-to: #14213D;
   }
   66% {
-    --tw-gradient-to: #b57c02;
+    --tw-gradient-to: #1c3d85;
   }
 }
 
