@@ -7,9 +7,9 @@ const navbar = ref(null)
 
 // Navigation items
 const navItems = [
-  { name: 'Szolgáltatás', href: '#service' },
+  { name: 'Kezdőlap', href: '#hero' },
+  { name: 'Szolgáltatás', href: '#szolgaltatasok' },
   { name: 'Projektek', href: '#projektek' },
-  { name: 'Tapasztalat', href: '#tapasztalat' },
   { name: 'Kapcsolat', href: '#kapcsolat' },
 ]
 

@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import BaseButton from '@/components/global/BaseButton.vue'
+import Logo from '@/assets/logo_transparent.png'
 
 const scrollToContact = () => {
   const contactSection = document.getElementById('kapcsolat')
@@ -60,7 +61,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark to-primary/30 animate-glow"
+    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark  animate-glow"
   >
     <div
       class="flex flex-col items-start pl-16 justify-center h-screen w-full text-white space-y-5"
@@ -83,7 +84,7 @@ onBeforeUnmount(() => {
               leave-from-class="opacity-100"
               leave-to-class="opacity-0"
             >
-              <span v-if="show" :key="currentLabel" class="text-light text-2xl">
+              <span v-if="show" :key="currentLabel" class="text-light text-2xl hidden sm:inline">
                 {{ currentLabel }}
               </span>
             </transition>
@@ -107,7 +108,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="flex flex-col items-center justify-center h-screen w-full animate-float">
-      <img src="@/assets/logo_transparent.png" alt="Hero Image" class="w-3/4 h-auto object-cover rounded-lg" />
+      <img :src="Logo" alt="Logo" class="w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
 </template>

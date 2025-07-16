@@ -1,6 +1,7 @@
 <script setup>
 import Hero from '@/components/Hero.vue'
 import Services from '@/components/Services.vue'
+import Projects from '@/components/Projects.vue'
 
 
 </script>
@@ -14,29 +15,17 @@ import Services from '@/components/Services.vue'
       </section>
 
       <!-- About Section -->
-      <section id="service">
+      <section id="szolgaltatasok">
         <Services/>
       </section>
 
       <!-- Projects Section -->
-      <section id="projektek" class="min-h-screen py-20 px-8 bg-gray-900">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold mb-8 text-center">Projektek</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div v-for="i in 6" :key="i" class="bg-gray-700/50 p-6 rounded-xl hover:bg-gray-700/70 transition-colors">
-              <h3 class="text-xl font-semibold mb-4">Projekt {{ i }}</h3>
-              <p class="text-gray-300 mb-4">Projekt leírás itt...</p>
-              <div class="flex space-x-2">
-                <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Vue.js</span>
-                <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">Node.js</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section id="projektek">
+        <Projects/>
       </section>
 
       <!-- Experience Section -->
-      <section id="tapasztalat" class="min-h-screen py-20 px-8 bg-gray-800">
+<!--      <section id="tapasztalat" class="min-h-screen py-20 px-8 bg-gray-800">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-4xl font-bold mb-8 text-center">Tapasztalat</h2>
           <div class="space-y-8">
@@ -47,7 +36,7 @@ import Services from '@/components/Services.vue'
             </div>
           </div>
         </div>
-      </section>
+      </section>-->
 
       <!-- Contact Section -->
       <section id="kapcsolat" class="min-h-screen py-20 px-8 bg-gray-900">
