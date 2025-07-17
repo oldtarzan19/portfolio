@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
     class="text-center flex flex-col md:flex-row justify-between w-full bg-gradient-to-r from-dark animate-glow"
   >
     <div
-      class="flex flex-col items-center md:items-start px-6 md:pl-16 justify-center h-screen w-full text-white space-y-5"
+      class="flex flex-col items-center px-6 md:pl-16 justify-center h-screen w-full text-white space-y-5"
     >
       <!-- Welcome text -->
       <div class="text-sm font-light tracking-wider text-light uppercase">
@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
 
       <!-- Main heading -->
       <div class="space-y-3">
-        <div class="text-left">
+        <div class="text-center">
           <h1 class="text-4xl sm:text-6xl font-bold leading-tight space-x-3">
             <span class="font-jetbrains">Weboldal</span>
             <transition
@@ -95,7 +95,7 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Description -->
-        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center md:text-left mx-auto md:mx-0">
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center mx-auto">
           Egyedi dizájn, mobilbarát kialakítás és folyamatos támogatás, hogy weboldalad ne csak szép
           legyen, de bevételt is termeljen.
         </p>
@@ -107,8 +107,10 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center h-screen w-full animate-float mt-8 md:mt-0">
-      <img :src="Logo" alt="Logo" class="w-3/4 sm:w-2/3 lg:w-3/4 h-auto object-cover rounded-lg" />
+    <div
+      class="hidden md:flex flex-col items-center justify-center h-screen w-full animate-float mt-8 md:mt-0"
+    >
+      <img :src="Logo" alt="Logo" class="w-3/4 md:w-2/3 lg:w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
 </template>
