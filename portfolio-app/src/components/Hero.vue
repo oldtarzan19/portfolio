@@ -61,10 +61,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="text-center flex flex-col md:flex-row justify-between w-full bg-gradient-to-r from-dark animate-glow"
+    class="flex flex-col lg:flex-row justify-between w-full bg-gradient-to-r from-dark animate-glow text-center lg:text-left"
   >
     <div
-      class="flex flex-col items-center px-6 md:pl-16 justify-center h-screen w-full text-white space-y-5"
+      class="flex flex-col items-center lg:items-start px-6 lg:pl-16 justify-center h-screen w-full text-white space-y-5"
     >
       <!-- Welcome text -->
       <div class="text-sm font-light tracking-wider text-light uppercase">
@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
 
       <!-- Main heading -->
       <div class="space-y-3">
-        <div class="text-center">
+        <div class="text-center lg:text-left">
           <h1 class="text-4xl sm:text-6xl font-bold leading-tight space-x-3">
             <span class="font-jetbrains">Weboldal</span>
             <transition
@@ -95,20 +95,20 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Description -->
-        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center mx-auto">
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center lg:text-left mx-auto lg:mx-0">
           Egyedi dizájn, mobilbarát kialakítás és folyamatos támogatás, hogy weboldalad ne csak szép
           legyen, de bevételt is termeljen.
         </p>
 
         <!-- Buttons -->
-        <div class="flex pt-4">
+        <div class="flex pt-4 justify-center lg:justify-start">
           <BaseButton @click="scrollToContact"> Indítsuk el a weboldalad! </BaseButton>
         </div>
       </div>
     </div>
 
     <div
-      class="hidden md:flex flex-col items-center justify-center h-screen w-full animate-float mt-8 md:mt-0"
+      class="hidden lg:flex flex-col items-center justify-center h-screen w-full animate-float mt-8 lg:mt-0"
     >
       <img :src="Logo" alt="Logo" class="w-3/4 md:w-2/3 lg:w-3/4 h-auto object-cover rounded-lg" />
     </div>
