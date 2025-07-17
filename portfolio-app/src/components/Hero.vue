@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import BaseButton from '@/components/global/BaseButton.vue'
 import Logo from '@/assets/logo_transparent.png'
 
@@ -9,6 +9,13 @@ const scrollToContact = () => {
     contactSection.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+const tabletBreakpoint = ref(window.innerWidth < 1024)
+
+const updateTabletBreakpoint = () => {
+  tabletBreakpoint.value = window.innerWidth < 1024
+}
+
 
 const labels = [
   'kisvállalkozásoknak',
@@ -53,9 +60,12 @@ onMounted(() => {
       show.value = true
     }, 900) // duration-500 értéke
   }, 3000)
+
+  window.addEventListener('resize', updateTabletBreakpoint)
 })
 onBeforeUnmount(() => {
   clearInterval(intervalId)
+  window.removeEventListener('resize', updateTabletBreakpoint)
 })
 </script>
 
@@ -84,7 +94,7 @@ onBeforeUnmount(() => {
               leave-from-class="opacity-100"
               leave-to-class="opacity-0"
             >
-              <span v-if="show" :key="currentLabel" class="text-light text-2xl hidden sm:inline">
+              <span v-if="show && !tabletBreakpoint" :key="currentLabel" class="text-light text-2xl hidden sm:inline">
                 {{ currentLabel }}
               </span>
             </transition>
