@@ -2,8 +2,7 @@
 import Hero from '@/components/Hero.vue'
 import Services from '@/components/Services.vue'
 import Projects from '@/components/Projects.vue'
-
-
+import Contact from '@/components/Contact.vue'
 </script>
 
 <template>
@@ -11,50 +10,22 @@ import Projects from '@/components/Projects.vue'
     <div class="min-h-screen bg-dark text-white">
       <!-- Hero Section -->
       <section id="hero" class="h-screen flex items-center justify-center">
-       <Hero/>
+        <Hero />
       </section>
 
       <!-- About Section -->
       <section id="szolgaltatasok">
-        <Services/>
+        <Services />
       </section>
 
       <!-- Projects Section -->
       <section id="projektek">
-        <Projects/>
+        <Projects />
       </section>
 
-      <!-- Experience Section -->
-<!--      <section id="tapasztalat" class="min-h-screen py-20 px-8 bg-gray-800">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-4xl font-bold mb-8 text-center">Tapasztalat</h2>
-          <div class="space-y-8">
-            <div v-for="i in 3" :key="i" class="bg-gray-700/50 p-6 rounded-xl">
-              <h3 class="text-xl font-semibold mb-2">Senior Developer</h3>
-              <p class="text-blue-400 mb-4">Tech Company {{ i }} • 2022-2024</p>
-              <p class="text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-          </div>
-        </div>
-      </section>-->
-
       <!-- Contact Section -->
-      <section id="kapcsolat" class="min-h-screen py-20 px-8 bg-gray-900">
-        <div class="max-w-4xl mx-auto text-center">
-          <h2 class="text-4xl font-bold mb-8">Kapcsolat</h2>
-          <p class="text-xl text-gray-300 mb-8">Keress bátran, ha van egy érdekes projekt!</p>
-          <div class="flex justify-center space-x-6">
-            <a href="mailto:email@example.com" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors">
-              Email
-            </a>
-            <a href="https://linkedin.com" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">
-              LinkedIn
-            </a>
-            <a href="https://github.com" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">
-              GitHub
-            </a>
-          </div>
-        </div>
+      <section id="kapcsolat">
+        <Contact />
       </section>
     </div>
   </main>
