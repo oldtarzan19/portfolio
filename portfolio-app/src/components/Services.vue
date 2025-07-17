@@ -99,7 +99,7 @@ onBeforeUnmount(() => {
       ></div>
     </div>
 
-    <div class="container mx-auto px-16 relative z-10">
+    <div class="container mx-auto px-4 sm:px-8 md:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
         <transition
@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
             <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">
               SZOLGÁLTATÁSOK
             </h2>
-            <h3 class="text-5xl font-bold font-jetbrains text-white leading-tight">
+            <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
               Mit kínálunk
               <span class="text-primary">kis- és mikrovállalkozóknak?</span>
             </h3>
@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Services Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto animate-float">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto animate-float">
         <div v-for="(service, index) in services" :key="index" class="group">
           <transition
             enter-active-class="transition-all duration-800 ease-out"
@@ -149,12 +149,12 @@ onBeforeUnmount(() => {
               <!-- Content -->
               <div class="space-y-4">
                 <h4
-                  class="text-2xl font-bold font-jetbrains text-white group-hover:text-primary transition-colors duration-300"
+                  class="text-xl sm:text-2xl font-bold font-jetbrains text-white group-hover:text-primary transition-colors duration-300"
                 >
                   {{ service.title }}
                 </h4>
                 <p
-                  class="text-light leading-relaxed text-lg group-hover:text-white transition-colors duration-300"
+                  class="text-light leading-relaxed text-base sm:text-lg group-hover:text-white transition-colors duration-300"
                 >
                   {{ service.description }}
                 </p>
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
         enter-to-class="opacity-100 transform translate-y-0"
       >
         <div v-if="isVisible" class="text-center mt-16">
-          <p class="text-xl text-light mb-8 max-w-2xl mx-auto">
+          <p class="text-lg sm:text-xl text-light mb-8 max-w-2xl mx-auto">
             Minden szolgáltatásunk egy cél felé irányul:
             <span class="text-primary font-semibold"
               >hogy a weboldalad valódi eredményeket hozzon</span

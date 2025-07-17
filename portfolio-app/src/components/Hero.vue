@@ -61,10 +61,10 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark  animate-glow"
+    class="text-center flex flex-col md:flex-row justify-between w-full bg-gradient-to-r from-dark animate-glow"
   >
     <div
-      class="flex flex-col items-start pl-16 justify-center h-screen w-full text-white space-y-5"
+      class="flex flex-col items-center md:items-start px-6 md:pl-16 justify-center h-screen w-full text-white space-y-5"
     >
       <!-- Welcome text -->
       <div class="text-sm font-light tracking-wider text-light uppercase">
@@ -74,7 +74,7 @@ onBeforeUnmount(() => {
       <!-- Main heading -->
       <div class="space-y-3">
         <div class="text-left">
-          <h1 class="text-6xl font-bold leading-tight space-x-3">
+          <h1 class="text-4xl sm:text-6xl font-bold leading-tight space-x-3">
             <span class="font-jetbrains">Weboldal</span>
             <transition
               enter-active-class="transition-opacity duration-500"
@@ -89,13 +89,13 @@ onBeforeUnmount(() => {
               </span>
             </transition>
           </h1>
-          <h2 class="text-5xl font-bold font-jetbrains leading-tight">
+          <h2 class="text-3xl sm:text-5xl font-bold font-jetbrains leading-tight">
             <span class="text-primary">kedvező, átlátható áron</span>
           </h2>
         </div>
 
         <!-- Description -->
-        <p class="text-lg text-gray-300 leading-relaxed max-w-md text-left">
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center md:text-left mx-auto md:mx-0">
           Egyedi dizájn, mobilbarát kialakítás és folyamatos támogatás, hogy weboldalad ne csak szép
           legyen, de bevételt is termeljen.
         </p>
@@ -107,8 +107,8 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center h-screen w-full animate-float">
-      <img :src="Logo" alt="Logo" class="w-3/4 h-auto object-cover rounded-lg" />
+    <div class="flex flex-col items-center justify-center h-screen w-full animate-float mt-8 md:mt-0">
+      <img :src="Logo" alt="Logo" class="w-3/4 sm:w-2/3 lg:w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
 </template>
@@ -117,7 +117,7 @@ onBeforeUnmount(() => {
 @keyframes glow {
   0%,
   100% {
-    --tw-gradient-to: #14213D;
+    --tw-gradient-to: #14213d;
   }
   66% {
     --tw-gradient-to: #1c3d85;
