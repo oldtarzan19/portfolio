@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
       ></div>
     </div>
 
-    <div class="container mx-auto px-16 relative z-10">
+    <div class="container mx-auto px-4 sm:px-8 md:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
         <transition
@@ -148,7 +148,7 @@ onBeforeUnmount(() => {
         >
           <div v-if="isVisible" class="space-y-4">
             <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">PROJEKTEK</h2>
-            <h3 class="text-5xl font-bold font-jetbrains text-white leading-tight">
+            <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
               Íme néhány
               <span class="text-primary">elkészült munkám</span>
             </h3>
@@ -157,7 +157,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Project Display -->
-      <div class="max-w-7xl mx-auto">
+      <div class="max-w-7xl mx-auto px-4 md:px-0">
         <transition
           enter-active-class="transition-all duration-1000 ease-out delay-300"
           enter-from-class="opacity-0 transform translate-y-12"
@@ -176,17 +176,17 @@ onBeforeUnmount(() => {
             >
               <div
                 :key="currentProjectIndex"
-                class="flex items-center justify-between gap-12 min-h-[500px]"
+                class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 min-h-[500px]"
               >
                 <!-- Left Side - Project Info -->
-                <div class="flex-1 space-y-6 transform transition-all duration-600 ease-out">
+                <div class="flex-1 space-y-6 transform transition-all duration-600 ease-out text-center lg:text-left">
                   <!-- Project Title -->
-                  <h4 class="text-4xl font-bold font-jetbrains text-white mb-4 leading-tight">
+                  <h4 class="text-2xl sm:text-4xl font-bold font-jetbrains text-white mb-4 leading-tight">
                     {{ projects[currentProjectIndex].title }}
                   </h4>
 
                   <!-- Project Description -->
-                  <p class="text-lg text-light leading-relaxed mb-6 max-w-2xl">
+                  <p class="text-base sm:text-lg text-light leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
                     {{ projects[currentProjectIndex].description }}
                   </p>
 
@@ -217,7 +217,7 @@ onBeforeUnmount(() => {
                 </div>
 
                 <!-- Right Side - Project Image -->
-                <div class="flex-1 flex justify-center">
+                <div class="flex-1 flex justify-center mt-8 lg:mt-0">
                   <div class="relative group animate-float">
                     <div
                       class="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-110"
@@ -241,7 +241,7 @@ onBeforeUnmount(() => {
         enter-from-class="opacity-0 transform translate-y-8"
         enter-to-class="opacity-100 transform translate-y-0"
       >
-        <div v-if="isVisible" class="flex justify-center mt-12 space-x-4">
+        <div v-if="isVisible" class="flex justify-center mt-12 space-x-2 sm:space-x-4">
           <button
             v-for="(project, index) in projects"
             :key="project.id"

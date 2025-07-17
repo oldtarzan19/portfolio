@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import BaseButton from '@/components/global/BaseButton.vue'
 import Logo from '@/assets/logo_transparent.png'
 
@@ -9,6 +9,13 @@ const scrollToContact = () => {
     contactSection.scrollIntoView({ behavior: 'smooth' })
   }
 }
+
+const tabletBreakpoint = ref(window.innerWidth < 1024)
+
+const updateTabletBreakpoint = () => {
+  tabletBreakpoint.value = window.innerWidth < 1024
+}
+
 
 const labels = [
   'kisvállalkozásoknak',
@@ -53,18 +60,21 @@ onMounted(() => {
       show.value = true
     }, 900) // duration-500 értéke
   }, 3000)
+
+  window.addEventListener('resize', updateTabletBreakpoint)
 })
 onBeforeUnmount(() => {
   clearInterval(intervalId)
+  window.removeEventListener('resize', updateTabletBreakpoint)
 })
 </script>
 
 <template>
   <div
-    class="text-center flex flex-row justify-between w-full bg-gradient-to-r from-dark  animate-glow"
+    class="flex flex-col lg:flex-row justify-between w-full bg-gradient-to-r from-dark animate-glow text-center lg:text-left"
   >
     <div
-      class="flex flex-col items-start pl-16 justify-center h-screen w-full text-white space-y-5"
+      class="flex flex-col items-center lg:items-start px-6 lg:pl-16 justify-center h-screen w-full text-white space-y-5"
     >
       <!-- Welcome text -->
       <div class="text-sm font-light tracking-wider text-light uppercase">
@@ -73,8 +83,8 @@ onBeforeUnmount(() => {
 
       <!-- Main heading -->
       <div class="space-y-3">
-        <div class="text-left">
-          <h1 class="text-6xl font-bold leading-tight space-x-3">
+        <div class="text-center lg:text-left">
+          <h1 class="text-4xl sm:text-6xl font-bold leading-tight space-x-3">
             <span class="font-jetbrains">Weboldal</span>
             <transition
               enter-active-class="transition-opacity duration-500"
@@ -84,31 +94,33 @@ onBeforeUnmount(() => {
               leave-from-class="opacity-100"
               leave-to-class="opacity-0"
             >
-              <span v-if="show" :key="currentLabel" class="text-light text-2xl hidden sm:inline">
+              <span v-if="show && !tabletBreakpoint" :key="currentLabel" class="text-light text-2xl hidden sm:inline">
                 {{ currentLabel }}
               </span>
             </transition>
           </h1>
-          <h2 class="text-5xl font-bold font-jetbrains leading-tight">
+          <h2 class="text-3xl sm:text-5xl font-bold font-jetbrains leading-tight">
             <span class="text-primary">kedvező, átlátható áron</span>
           </h2>
         </div>
 
         <!-- Description -->
-        <p class="text-lg text-gray-300 leading-relaxed max-w-md text-left">
+        <p class="text-base sm:text-lg text-gray-300 leading-relaxed max-w-md text-center lg:text-left mx-auto lg:mx-0">
           Egyedi dizájn, mobilbarát kialakítás és folyamatos támogatás, hogy weboldalad ne csak szép
           legyen, de bevételt is termeljen.
         </p>
 
         <!-- Buttons -->
-        <div class="flex pt-4">
+        <div class="flex pt-4 justify-center lg:justify-start">
           <BaseButton @click="scrollToContact"> Indítsuk el a weboldalad! </BaseButton>
         </div>
       </div>
     </div>
 
-    <div class="flex flex-col items-center justify-center h-screen w-full animate-float">
-      <img :src="Logo" alt="Logo" class="w-3/4 h-auto object-cover rounded-lg" />
+    <div
+      class="hidden lg:flex flex-col items-center justify-center h-screen w-full animate-float mt-8 lg:mt-0"
+    >
+      <img :src="Logo" alt="Logo" class="w-3/4 md:w-2/3 lg:w-3/4 h-auto object-cover rounded-lg" />
     </div>
   </div>
 </template>
@@ -117,7 +129,7 @@ onBeforeUnmount(() => {
 @keyframes glow {
   0%,
   100% {
-    --tw-gradient-to: #14213D;
+    --tw-gradient-to: #14213d;
   }
   66% {
     --tw-gradient-to: #1c3d85;
