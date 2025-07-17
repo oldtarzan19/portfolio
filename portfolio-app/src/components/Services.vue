@@ -113,7 +113,8 @@ onBeforeUnmount(() => {
             </h2>
             <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
               Mit kínálunk
-              <span class="text-primary">kis- és mikrovállalkozóknak?</span>
+              <span class="text-primary hidden sm:inline-block">kis- és mikrovállalkozóknak?</span>
+              <span class="text-primary sm:hidden">a vállalkozóknak?</span>
             </h3>
           </div>
         </transition>

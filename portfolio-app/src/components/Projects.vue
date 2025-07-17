@@ -45,7 +45,7 @@ const projects = ref([
     description:
       'Kreatív portfólió oldal smooth animációkkal és modern design elemekkel. Teljesen egyedi kialakítás és optimalizált teljesítmény.',
     image: portfolioImg,
-    techStack: ['Vue3', 'Tailwind', 'Firebase'],
+    techStack: ['Vue 3', 'Tailwind', 'Firebase'],
     link: '',
     linkDisabled: true,
   },
@@ -127,7 +127,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="projectsContainer" class="py-24 bg-gradient-to-r from-dark animate-glow relative">
+  <div ref="projectsContainer" class="py-24 bg-gradient-to-r from-dark animate-glow relative overflow-x-hidden">
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-10">
       <div

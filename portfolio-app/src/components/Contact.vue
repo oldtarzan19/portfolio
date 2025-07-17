@@ -107,19 +107,19 @@ onBeforeUnmount(() => {
 <template>
   <section
     ref="contactContainer"
-    class="py-24 bg-gradient-to-b from-dark via-secondary/20 to-dark relative overflow-hidden"
+    class="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-dark via-secondary/20 to-dark relative overflow-hidden"
   >
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-10">
       <div
-        class="absolute top-1/3 left-1/3 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse"
+        class="absolute top-1/3 left-1/3 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 bg-primary rounded-full blur-3xl animate-pulse"
       ></div>
       <div
-        class="absolute bottom-1/3 right-1/3 w-64 h-64 bg-primary rounded-full blur-3xl animate-pulse delay-1000"
+        class="absolute bottom-1/3 right-1/3 w-40 h-40 sm:w-56 sm:h-56 lg:w-64 lg:h-64 bg-primary rounded-full blur-3xl animate-pulse delay-1000"
       ></div>
     </div>
 
-    <div class="container mx-auto px-16 relative z-10">
+    <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
         <transition
@@ -129,7 +129,9 @@ onBeforeUnmount(() => {
         >
           <div v-if="isVisible" class="space-y-4">
             <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">KAPCSOLAT</h2>
-            <h3 class="text-5xl font-bold font-jetbrains text-white leading-tight">
+            <h3
+              class="text-3xl sm:text-4xl lg:text-5xl font-bold font-jetbrains text-white leading-tight"
+            >
               Kezdjük el
               <span class="text-primary">közösen!</span>
             </h3>
@@ -138,7 +140,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Main Content Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 max-w-6xl mx-auto">
         <!-- Left Side - Marketing Content -->
         <div class="space-y-12">
           <!-- Email Contact -->
@@ -155,8 +157,8 @@ onBeforeUnmount(() => {
                 <div>
                   <p class="text-light text-sm uppercase tracking-wider">Írj nekem</p>
                   <a
-                    href="mailto:your.email@example.com"
-                    class="text-xl font-jetbrains text-white hover:text-primary transition-colors duration-300"
+                    href="mailto:zsofenszki.kristof@gmail.com"
+                    class="text-base sm:text-xl font-jetbrains text-white hover:text-primary transition-colors duration-300 break-all"
                   >
                     zsofenszki.kristof@gmail.com
                   </a>
@@ -237,7 +239,7 @@ onBeforeUnmount(() => {
           >
             <div
               v-if="animatedItems[marketingPoints.length]"
-              class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-8 relative overflow-hidden"
+              class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden"
             >
               <!-- Form Background Effect -->
               <div
