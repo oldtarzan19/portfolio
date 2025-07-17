@@ -241,7 +241,7 @@ onBeforeUnmount(() => {
             >
               <!-- Form Background Effect -->
               <div
-                class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"
+                class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/50 opacity-50"
               ></div>
 
               <div class="relative z-10">
