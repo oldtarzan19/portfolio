@@ -9,13 +9,15 @@ const currentYear = new Date().getFullYear()
       <div class="flex justify-center items-center space-x-4 text-sm">
         <a
           href="/impresszum"
+          target="_blank"
           class="text-light hover:text-primary transition-colors duration-300 hover:underline"
         >
           Impresszum
         </a>
         <span class="text-secondary">|</span>
         <a
-          href="/adatvedelem"
+          href="/adatvedelmi-tajekoztato"
+          target="_blank"
           class="text-light hover:text-primary transition-colors duration-300 hover:underline"
         >
           Adatvédelmi nyilatkozat

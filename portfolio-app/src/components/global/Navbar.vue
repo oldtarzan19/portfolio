@@ -143,7 +143,7 @@ watch(isMobileMenuOpen, (open) => {
 
       <!-- Lábléc -->
       <footer class="absolute bottom-0 left-0 right-0 p-6 border-t border-primary/20">
-        <p class="text-sm text-light/60 text-center">&copy; {{ currentYear }} Webfejlesztomlesz</p>
+        <p class="text-sm text-light/60 text-center">&copy; {{ currentYear }} pixelcode</p>
       </footer>
     </aside>
   </div>

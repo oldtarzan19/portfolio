@@ -344,7 +344,7 @@ onBeforeUnmount(() => {
                   <label for="privacy-checkbox" class="text-sm text-light leading-relaxed cursor-pointer">
                     Elfogadom az
                     <a
-                      href="/adatvedelem"
+                      href="/adatvedelmi-tajekoztato"
                       target="_blank"
                       class="text-primary hover:text-primary/80 transition-colors duration-300 underline"
                     >

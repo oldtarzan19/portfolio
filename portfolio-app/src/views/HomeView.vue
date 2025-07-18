@@ -3,9 +3,14 @@ import Hero from '@/components/Hero.vue'
 import Services from '@/components/Services.vue'
 import Projects from '@/components/Projects.vue'
 import Contact from '@/components/Contact.vue'
+import Navbar from '@/components/global/Navbar.vue'
 </script>
 
 <template>
+  <header>
+    <Navbar />
+  </header>
+
   <main>
     <div class="min-h-screen bg-dark text-white">
       <!-- Hero Section -->
