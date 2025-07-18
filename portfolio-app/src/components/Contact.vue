@@ -122,21 +122,20 @@ onBeforeUnmount(() => {
     <div class="container mx-auto px-4 sm:px-8 md:px-12 lg:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out"
-          enter-from-class="opacity-0 transform translate-y-8"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          :class="[
+            'space-y-4 transition-all duration-1000 ease-out',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          ]"
         >
-          <div v-show="isVisible" class="space-y-4">
-            <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">KAPCSOLAT</h2>
-            <h3
-              class="text-3xl sm:text-4xl lg:text-5xl font-bold font-jetbrains text-white leading-tight"
-            >
-              Kezdjük el
-              <span class="text-primary">közösen!</span>
-            </h3>
-          </div>
-        </transition>
+          <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">KAPCSOLAT</h2>
+          <h3
+            class="text-3xl sm:text-4xl lg:text-5xl font-bold font-jetbrains text-white leading-tight"
+          >
+            Kezdjük el
+            <span class="text-primary">közösen!</span>
+          </h3>
+        </div>
       </div>
 
       <!-- Main Content Grid -->
@@ -144,41 +143,40 @@ onBeforeUnmount(() => {
         <!-- Left Side - Marketing Content -->
         <div class="space-y-12">
           <!-- Email Contact -->
-          <transition
-            enter-active-class="transition-all duration-800 ease-out"
-            enter-from-class="opacity-0 transform translate-y-12"
-            enter-to-class="opacity-100 transform translate-y-0"
+          <div
+            :class="[
+              'text-center lg:text-left transition-all duration-800 ease-out',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            ]"
           >
-            <div v-show="isVisible" class="text-center lg:text-left">
-              <div class="inline-flex items-center justify-center lg:justify-start space-x-3 mb-6">
-                <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-3 rounded-full">
-                  <Mail class="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p class="text-light text-sm uppercase tracking-wider">Írj nekem</p>
-                  <a
-                    href="mailto:zsofenszki.kristof@gmail.com"
-                    class="text-base sm:text-xl font-jetbrains text-white hover:text-primary transition-colors duration-300 break-all"
-                  >
-                    zsofenszki.kristof@gmail.com
-                  </a>
-                </div>
+            <div class="inline-flex items-center justify-center lg:justify-start space-x-3 mb-6">
+              <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-3 rounded-full">
+                <Mail class="w-6 h-6 text-primary" />
+              </div>
+              <div>
+                <p class="text-light text-sm uppercase tracking-wider">Írj nekem</p>
+                <a
+                  href="mailto:zsofenszki.kristof@gmail.com"
+                  class="text-base sm:text-xl font-jetbrains text-white hover:text-primary transition-colors duration-300 break-all"
+                >
+                  zsofenszki.kristof@gmail.com
+                </a>
               </div>
             </div>
-          </transition>
+          </div>
 
           <!-- Marketing Points -->
           <div class="space-y-8">
             <div v-for="(point, index) in marketingPoints" :key="index">
-              <transition
-                enter-active-class="transition-all duration-800 ease-out"
-                enter-from-class="opacity-0 transform translate-y-12 scale-95"
-                enter-to-class="opacity-100 transform translate-y-0 scale-100"
+              <div
+                :class="[
+                  'group flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02]',
+                  'transition-all duration-800 ease-out',
+                  animatedItems[index]
+                    ? 'opacity-100 translate-y-0 scale-100'
+                    : 'opacity-0 translate-y-12 scale-95'
+                ]"
               >
-                <div
-                  v-show="animatedItems[index]"
-                  class="group flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02]"
-                >
                   <!-- Icon -->
                   <div class="relative flex-shrink-0">
                     <div
@@ -207,40 +205,38 @@ onBeforeUnmount(() => {
                       {{ point.description }}
                     </p>
                   </div>
-                </div>
-              </transition>
+              </div>
             </div>
           </div>
 
           <!-- Trust Message -->
-          <transition
-            enter-active-class="transition-all duration-800 ease-out delay-500"
-            enter-from-class="opacity-0 transform translate-y-8"
-            enter-to-class="opacity-100 transform translate-y-0"
+          <div
+            :class="[
+              'text-center lg:text-left transition-all duration-800 ease-out delay-500',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            ]"
           >
-            <div v-show="isVisible" class="text-center lg:text-left">
-              <p class="text-light text-lg leading-relaxed">
-                Minden projekt egyedi kihívás számomra.
-                <span class="text-primary font-semibold"
-                  >Közösen alakítjuk ki a tökéletes megoldást</span
-                >
-                az elképzeléseid alapján.
-              </p>
-            </div>
-          </transition>
+            <p class="text-light text-lg leading-relaxed">
+              Minden projekt egyedi kihívás számomra.
+              <span class="text-primary font-semibold"
+                >Közösen alakítjuk ki a tökéletes megoldást</span
+              >
+              az elképzeléseid alapján.
+            </p>
+          </div>
         </div>
 
         <!-- Right Side - Contact Form -->
         <div>
-          <transition
-            enter-active-class="transition-all duration-1000 ease-out"
-            enter-from-class="opacity-0 transform translate-y-12 scale-95"
-            enter-to-class="opacity-100 transform translate-y-0 scale-100"
+          <div
+            :class="[
+              'bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden',
+              'transition-all duration-1000 ease-out',
+              animatedItems[marketingPoints.length]
+                ? 'opacity-100 translate-y-0 scale-100'
+                : 'opacity-0 translate-y-12 scale-95'
+            ]"
           >
-            <div
-              v-show="animatedItems[marketingPoints.length]"
-              class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden"
-            >
               <!-- Form Background Effect -->
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/50 opacity-50"
@@ -333,8 +329,7 @@ onBeforeUnmount(() => {
                   </div>
                 </form>
               </div>
-            </div>
-          </transition>
+          </div>
         </div>
       </div>
     </div>

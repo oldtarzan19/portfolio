@@ -144,29 +144,28 @@ onBeforeUnmount(() => {
     <div class="container mx-auto px-4 sm:px-8 md:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out"
-          enter-from-class="opacity-0 transform translate-y-8"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          :class="[
+            'space-y-4 transition-all duration-1000 ease-out',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          ]"
         >
-          <div v-show="isVisible" class="space-y-4">
-            <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">PROJEKTEK</h2>
-            <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
-              Íme néhány
-              <span class="text-primary">elkészült munkám</span>
-            </h3>
-          </div>
-        </transition>
+          <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">PROJEKTEK</h2>
+          <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
+            Íme néhány
+            <span class="text-primary">elkészült munkám</span>
+          </h3>
+        </div>
       </div>
 
       <!-- Project Display -->
       <div class="max-w-7xl mx-auto px-4 md:px-0">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out delay-300"
-          enter-from-class="opacity-0 transform translate-y-12"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          :class="[
+            'relative transition-all duration-1000 ease-out delay-300',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          ]"
         >
-          <div v-show="isVisible" class="relative">
             <!-- Project Content Container -->
             <transition
               enter-active-class="transition-all duration-600 ease-out"
@@ -245,12 +244,12 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- Project Indicators -->
-      <transition
-        enter-active-class="transition-all duration-1000 ease-out delay-500"
-        enter-from-class="opacity-0 transform translate-y-8"
-        enter-to-class="opacity-100 transform translate-y-0"
+      <div
+        :class="[
+          'flex justify-center mt-12 space-x-2 sm:space-x-4 transition-all duration-1000 ease-out delay-500',
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        ]"
       >
-        <div v-show="isVisible" class="flex justify-center mt-12 space-x-2 sm:space-x-4">
           <button
             v-for="(project, index) in projects"
             :key="project.id"
@@ -275,8 +274,7 @@ onBeforeUnmount(() => {
               class="absolute inset-0 rounded-full border-2 border-primary/30"
             ></div>
           </button>
-        </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>

@@ -102,41 +102,40 @@ onBeforeUnmount(() => {
     <div class="container mx-auto px-4 sm:px-8 md:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out"
-          enter-from-class="opacity-0 transform translate-y-8"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          :class="[
+            'space-y-4 transition-all duration-1000 ease-out',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          ]"
         >
-          <div v-show="isVisible" class="space-y-4">
-            <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">
-              SZOLGÁLTATÁSOK
-            </h2>
-            <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
-              Mit kínálunk
-              <span class="text-primary hidden sm:inline-block">kis- és mikrovállalkozóknak?</span>
-              <span class="text-primary sm:hidden">a vállalkozóknak?</span>
-            </h3>
-          </div>
-        </transition>
+          <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">
+            SZOLGÁLTATÁSOK
+          </h2>
+          <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
+            Mit kínálunk
+            <span class="text-primary hidden sm:inline-block">kis- és mikrovállalkozóknak?</span>
+            <span class="text-primary sm:hidden">a vállalkozóknak?</span>
+          </h3>
+        </div>
       </div>
 
       <!-- Services Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto animate-float">
         <div v-for="(service, index) in services" :key="index" class="group">
-          <transition
-            enter-active-class="transition-all duration-800 ease-out"
-            enter-from-class="opacity-0 transform translate-y-12 scale-95"
-            enter-to-class="opacity-100 transform translate-y-0 scale-100"
+          <div
+            :class="[
+              'relative p-8 rounded-2xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10',
+              'transition-all duration-800 ease-out',
+              animatedItems[index]
+                ? 'opacity-100 translate-y-0 scale-100'
+                : 'opacity-0 translate-y-12 scale-95'
+            ]"
           >
-            <div
-              v-show="animatedItems[index]"
-              class="relative p-8 rounded-2xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10"
-            >
-              <!-- Icon with animated background -->
-              <div class="relative mb-6">
-                <div
-                  class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-150"
-                ></div>
+            <!-- Icon with animated background -->
+            <div class="relative mb-6">
+              <div
+                class="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-150"
+              ></div>
                 <div
                   class="relative bg-gradient-to-br from-primary/10 to-primary/5 p-4 rounded-full w-16 h-16 flex items-center justify-center group-hover:from-primary/20 group-hover:to-primary/10 transition-all duration-500"
                 >
@@ -160,27 +159,25 @@ onBeforeUnmount(() => {
                   {{ service.description }}
                 </p>
               </div>
-            </div>
-          </transition>
+          </div>
         </div>
       </div>
 
       <!-- Bottom CTA -->
-      <transition
-        enter-active-class="transition-all duration-1000 ease-out delay-700"
-        enter-from-class="opacity-0 transform translate-y-8"
-        enter-to-class="opacity-100 transform translate-y-0"
+      <div
+        :class="[
+          'text-center mt-16 transition-all duration-1000 ease-out delay-700',
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        ]"
       >
-        <div v-show="isVisible" class="text-center mt-16">
-          <p class="text-lg sm:text-xl text-light mb-8 max-w-2xl mx-auto">
-            Minden szolgáltatásunk egy cél felé irányul:
-            <span class="text-primary font-semibold"
-              >hogy a weboldalad valódi eredményeket hozzon</span
-            >
-          </p>
-          <BaseButton @click="scrollToContact"> Beszéljük meg a részleteket! </BaseButton>
-        </div>
-      </transition>
+        <p class="text-lg sm:text-xl text-light mb-8 max-w-2xl mx-auto">
+          Minden szolgáltatásunk egy cél felé irányul:
+          <span class="text-primary font-semibold"
+            >hogy a weboldalad valódi eredményeket hozzon</span
+          >
+        </p>
+        <BaseButton @click="scrollToContact"> Beszéljük meg a részleteket! </BaseButton>
+      </div>
     </div>
   </section>
 </template>
