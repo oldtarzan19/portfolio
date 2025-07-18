@@ -356,15 +356,17 @@ onBeforeUnmount(() => {
 
                 <!-- Submit Button -->
                 <div class="pt-4">
-                  <button
+                  <BaseButton
                     type="submit"
-                    :disabled="isSubmitting || !formData.name || !formData.email || !formData.message || !formData.privacyAccepted"
-                    class="w-full bg-gradient-to-r from-primary to-primary/80 text-dark font-bold py-3 px-6 rounded-lg hover:from-primary/90 hover:to-primary/70 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    :disabled="
+                      isSubmitting || !formData.name || !formData.email || !formData.message
+                    "
+                    class="w-full py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     <span v-if="!isSubmitting">Elküldés</span>
                     <span v-else>Küldés...</span>
                     <Send :class="['w-4 h-4', isSubmitting ? 'animate-pulse' : '']" />
-                  </button>
+                  </BaseButton>
                 </div>
               </form>
             </div>
