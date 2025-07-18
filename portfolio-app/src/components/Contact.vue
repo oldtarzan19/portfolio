@@ -272,7 +272,9 @@ onBeforeUnmount(() => {
               <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="space-y-6">
                 <!-- Name Field -->
                 <div>
-                  <label class="block text-light text-sm font-medium mb-2"> Név * </label>
+                  <label class="block text-light text-sm font-medium mb-2">
+                    Név *
+                  </label>
                   <input
                     v-model="formData.name"
                     type="text"
@@ -284,7 +286,9 @@ onBeforeUnmount(() => {
 
                 <!-- Email Field -->
                 <div>
-                  <label class="block text-light text-sm font-medium mb-2"> Email cím * </label>
+                  <label class="block text-light text-sm font-medium mb-2">
+                    Email cím *
+                  </label>
                   <input
                     v-model="formData.email"
                     type="email"
@@ -308,19 +312,59 @@ onBeforeUnmount(() => {
                   ></textarea>
                 </div>
 
+                <!-- Privacy Checkbox -->
+                <div class="flex items-start space-x-3">
+                  <div class="relative flex items-center justify-center mt-1">
+                    <input
+                      id="privacy-checkbox"
+                      v-model="formData.privacyAccepted"
+                      type="checkbox"
+                      class="sr-only"
+                      required
+                    />
+                    <label
+                      for="privacy-checkbox"
+                      class="relative flex items-center justify-center w-5 h-5 bg-dark/50 border-2 border-primary/50 rounded cursor-pointer transition-all duration-300 hover:border-primary"
+                      :class="formData.privacyAccepted ? 'bg-primary border-primary' : ''"
+                    >
+                      <svg
+                        v-if="formData.privacyAccepted"
+                        class="w-3 h-3 text-dark"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clip-rule="evenodd"
+                        />
+                      </svg>
+                    </label>
+                  </div>
+                  <label for="privacy-checkbox" class="text-sm text-light leading-relaxed cursor-pointer">
+                    Elfogadom az
+                    <a
+                      href="/adatvedelem"
+                      target="_blank"
+                      class="text-primary hover:text-primary/80 transition-colors duration-300 underline"
+                    >
+                      adatvédelmi tájékoztatót
+                    </a>
+                    <span class="text-primary">*</span>
+                  </label>
+                </div>
+
                 <!-- Submit Button -->
                 <div class="pt-4">
-                  <BaseButton
+                  <button
                     type="submit"
-                    :disabled="
-                      isSubmitting || !formData.name || !formData.email || !formData.message
-                    "
-                    class="w-full py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    :disabled="isSubmitting || !formData.name || !formData.email || !formData.message || !formData.privacyAccepted"
+                    class="w-full bg-gradient-to-r from-primary to-primary/80 text-dark font-bold py-3 px-6 rounded-lg hover:from-primary/90 hover:to-primary/70 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     <span v-if="!isSubmitting">Elküldés</span>
                     <span v-else>Küldés...</span>
                     <Send :class="['w-4 h-4', isSubmitting ? 'animate-pulse' : '']" />
-                  </BaseButton>
+                  </button>
                 </div>
               </form>
             </div>
