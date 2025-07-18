@@ -28,3 +28,27 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Node / npm
+node_modules/
+
+# Build kimenetek
+dist/
+.dist-ssr/
+
+# Firebase cache / emulátor
+.firebase/
+hosting.*.cache/
+
+# Környezeti változó fájlok
+.env
+.env.local
+.env.*.local
+
+# OS / Editor
+Thumbs.db
+.vscode/
+.idea/
+
+# Coverage
+coverage/

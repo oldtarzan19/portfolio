@@ -17,11 +17,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true,
+  },
   /*server: {
     host: true,
     allowedHosts: [
       'smashing-lacewing-endlessly.ngrok-free.app', // teljes domain
     ],
   }*/
-
 })

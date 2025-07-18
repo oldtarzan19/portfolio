@@ -1,0 +1,9 @@
+node_modules/
+*.local
+
+# Környezeti változók
+.env
+.env.*.local
+
+# Ha van tsconfig.buildinfo
+*.tsbuildinfo
