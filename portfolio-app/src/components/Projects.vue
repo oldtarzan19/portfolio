@@ -127,7 +127,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="projectsContainer" class="py-24 bg-gradient-to-r from-dark animate-glow relative overflow-x-hidden">
+  <div
+    ref="projectsContainer"
+    id="projektek"
+    class="scroll-mt-24 py-24 bg-gradient-to-r from-dark animate-glow relative overflow-x-hidden"
+  >
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-10">
       <div
@@ -141,133 +145,119 @@ onBeforeUnmount(() => {
     <div class="container mx-auto px-4 sm:px-8 md:px-16 relative z-10">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out"
-          enter-from-class="opacity-0 transform translate-y-8"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          class="space-y-4 transition-all duration-1000 ease-out"
+          :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
-          <div v-if="isVisible" class="space-y-4">
-            <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">PROJEKTEK</h2>
-            <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
-              Íme néhány
-              <span class="text-primary">elkészült munkám</span>
-            </h3>
-          </div>
-        </transition>
+          <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">PROJEKTEK</h2>
+          <h3 class="text-3xl sm:text-5xl font-bold font-jetbrains text-white leading-tight">
+            Íme néhány
+            <span class="text-primary">elkészült munkám</span>
+          </h3>
+        </div>
       </div>
 
       <!-- Project Display -->
       <div class="max-w-7xl mx-auto px-4 md:px-0">
-        <transition
-          enter-active-class="transition-all duration-1000 ease-out delay-300"
-          enter-from-class="opacity-0 transform translate-y-12"
-          enter-to-class="opacity-100 transform translate-y-0"
+        <div
+          class="relative transition-all duration-1000 ease-out delay-300"
+          :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
         >
-          <div v-if="isVisible" class="relative">
-            <!-- Project Content Container -->
-            <transition
-              enter-active-class="transition-all duration-600 ease-out"
-              enter-from-class="opacity-0"
-              enter-to-class="opacity-100"
-              leave-active-class="transition-all duration-600 ease-out"
-              leave-from-class="opacity-100"
-              leave-to-class="opacity-0"
-              mode="out-in"
+          <!-- Project Content Container -->
+          <transition
+            enter-active-class="transition-all duration-600 ease-out"
+            enter-from-class="opacity-0"
+            enter-to-class="opacity-100"
+            leave-active-class="transition-all duration-600 ease-out"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
+            mode="out-in"
+          >
+            <div
+              :key="currentProjectIndex"
+              class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 min-h-[500px]"
             >
+              <!-- Left Side - Project Info -->
               <div
-                :key="currentProjectIndex"
-                class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 min-h-[500px]"
+                class="flex-1 space-y-6 transition-all duration-600 ease-out text-center lg:text-left"
               >
-                <!-- Left Side - Project Info -->
-                <div class="flex-1 space-y-6 transform transition-all duration-600 ease-out text-center lg:text-left">
-                  <!-- Project Title -->
-                  <h4 class="text-2xl sm:text-4xl font-bold font-jetbrains text-white mb-4 leading-tight">
-                    {{ projects[currentProjectIndex].title }}
-                  </h4>
-
-                  <!-- Project Description -->
-                  <p class="text-base sm:text-lg text-light leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left">
-                    {{ projects[currentProjectIndex].description }}
-                  </p>
-
-                  <!-- Tech Stack -->
-                  <div class="mb-8">
-                    <h5 class="text-sm font-light tracking-wider text-light uppercase mb-4">
-                      TECHNOLÓGIÁK
-                    </h5>
-                    <div class="flex flex-wrap gap-3">
-                      <span
-                        v-for="tech in projects[currentProjectIndex].techStack"
-                        :key="tech"
-                        class="px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-full text-primary font-medium text-sm hover:from-primary/20 hover:to-primary/10 transition-all duration-300"
-                      >
-                        {{ tech }}
-                      </span>
-                    </div>
+                <h4
+                  class="text-2xl sm:text-4xl font-bold font-jetbrains text-white mb-4 leading-tight"
+                >
+                  {{ projects[currentProjectIndex].title }}
+                </h4>
+                <p
+                  class="text-base sm:text-lg text-light leading-relaxed mb-6 max-w-2xl mx-auto lg:mx-0 text-center lg:text-left"
+                >
+                  {{ projects[currentProjectIndex].description }}
+                </p>
+                <div class="mb-8">
+                  <h5 class="text-sm font-light tracking-wider text-light uppercase mb-4">
+                    TECHNOLÓGIÁK
+                  </h5>
+                  <div class="flex flex-wrap gap-3">
+                    <span
+                      v-for="tech in projects[currentProjectIndex].techStack"
+                      :key="tech"
+                      class="px-4 py-2 bg-gradient-to-r from-primary/10 to-primary/5 border border-primary/20 rounded-full text-primary font-medium text-sm hover:from-primary/20 hover:to-primary/10 transition-all duration-300"
+                    >
+                      {{ tech }}
+                    </span>
                   </div>
-
-                  <!-- Project Link -->
-                  <BaseButton
-                    v-if="!projects[currentProjectIndex].linkDisabled"
-                    :href="projects[currentProjectIndex].link"
-                  >
-                    <ExternalLink class="w-5 h-5" />
-                    Projekt megtekintése
-                  </BaseButton>
                 </div>
+                <BaseButton
+                  v-if="!projects[currentProjectIndex].linkDisabled"
+                  :href="projects[currentProjectIndex].link"
+                >
+                  <ExternalLink class="w-5 h-5" />
+                  Projekt megtekintése
+                </BaseButton>
+              </div>
 
-                <!-- Right Side - Project Image -->
-                <div class="flex-1 flex justify-center mt-8 lg:mt-0">
-                  <div class="relative group animate-float">
-                    <div
-                      class="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-110"
-                    ></div>
-                    <img
-                      :src="projects[currentProjectIndex].image"
-                      :alt="projects[currentProjectIndex].title"
-                      class="relative w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+              <!-- Right Side - Project Image -->
+              <div class="flex-1 flex justify-center mt-8 lg:mt-0">
+                <div class="relative group animate-float">
+                  <div
+                    class="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-110"
+                  ></div>
+                  <img
+                    :src="projects[currentProjectIndex].image"
+                    :alt="projects[currentProjectIndex].title"
+                    class="relative w-full max-w-lg h-auto object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               </div>
-            </transition>
-          </div>
-        </transition>
+            </div>
+          </transition>
+        </div>
       </div>
 
       <!-- Project Indicators -->
-      <transition
-        enter-active-class="transition-all duration-1000 ease-out delay-500"
-        enter-from-class="opacity-0 transform translate-y-8"
-        enter-to-class="opacity-100 transform translate-y-0"
+      <div
+        class="flex justify-center mt-12 space-x-2 sm:space-x-4 transition-all duration-1000 ease-out delay-500"
+        :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
       >
-        <div v-if="isVisible" class="flex justify-center mt-12 space-x-2 sm:space-x-4">
-          <button
-            v-for="(project, index) in projects"
-            :key="project.id"
-            a
-            @click="goToProject(index)"
-            class="relative w-3 h-3 rounded-full transition-all duration-300 hover:scale-110"
-            :class="[
-              index === currentProjectIndex
-                ? 'bg-primary scale-125'
-                : 'bg-secondary/50 hover:bg-secondary/80',
-            ]"
-          >
-            <!-- Animated ring for active indicator -->
-            <div
-              v-if="index === currentProjectIndex"
-              class="absolute inset-0 bg-primary rounded-full animate-ping opacity-75"
-            ></div>
-
-            <!-- Progress ring animation -->
-            <div
-              v-if="index === currentProjectIndex"
-              class="absolute inset-0 rounded-full border-2 border-primary/30"
-            ></div>
-          </button>
-        </div>
-      </transition>
+        <button
+          v-for="(project, index) in projects"
+          :key="project.id"
+          @click="goToProject(index)"
+          class="relative w-3 h-3 rounded-full transition-all duration-300 hover:scale-110"
+          :class="[
+            index === currentProjectIndex
+              ? 'bg-primary scale-125'
+              : 'bg-secondary/50 hover:bg-secondary/80',
+          ]"
+        >
+          <div
+            v-if="index === currentProjectIndex"
+            class="absolute inset-0 bg-primary rounded-full animate-ping opacity-75"
+          ></div>
+          <div
+            v-if="index === currentProjectIndex"
+            class="absolute inset-0 rounded-full border-2 border-primary/30"
+          ></div>
+        </button>
+      </div>
     </div>
   </div>
 </template>
