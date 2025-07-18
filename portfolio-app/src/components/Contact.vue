@@ -127,7 +127,7 @@ onBeforeUnmount(() => {
           enter-from-class="opacity-0 transform translate-y-8"
           enter-to-class="opacity-100 transform translate-y-0"
         >
-          <div v-if="isVisible" class="space-y-4">
+          <div v-show="isVisible" class="space-y-4">
             <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">KAPCSOLAT</h2>
             <h3
               class="text-3xl sm:text-4xl lg:text-5xl font-bold font-jetbrains text-white leading-tight"
@@ -149,7 +149,7 @@ onBeforeUnmount(() => {
             enter-from-class="opacity-0 transform translate-y-12"
             enter-to-class="opacity-100 transform translate-y-0"
           >
-            <div v-if="isVisible" class="text-center lg:text-left">
+            <div v-show="isVisible" class="text-center lg:text-left">
               <div class="inline-flex items-center justify-center lg:justify-start space-x-3 mb-6">
                 <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-3 rounded-full">
                   <Mail class="w-6 h-6 text-primary" />
@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
                 enter-to-class="opacity-100 transform translate-y-0 scale-100"
               >
                 <div
-                  v-if="animatedItems[index]"
+                  v-show="animatedItems[index]"
                   class="group flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02]"
                 >
                   <!-- Icon -->
@@ -218,7 +218,7 @@ onBeforeUnmount(() => {
             enter-from-class="opacity-0 transform translate-y-8"
             enter-to-class="opacity-100 transform translate-y-0"
           >
-            <div v-if="isVisible" class="text-center lg:text-left">
+            <div v-show="isVisible" class="text-center lg:text-left">
               <p class="text-light text-lg leading-relaxed">
                 Minden projekt egyedi kihívás számomra.
                 <span class="text-primary font-semibold"
@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
             enter-to-class="opacity-100 transform translate-y-0 scale-100"
           >
             <div
-              v-if="animatedItems[marketingPoints.length]"
+              v-show="animatedItems[marketingPoints.length]"
               class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden"
             >
               <!-- Form Background Effect -->

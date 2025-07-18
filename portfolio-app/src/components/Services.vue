@@ -107,7 +107,7 @@ onBeforeUnmount(() => {
           enter-from-class="opacity-0 transform translate-y-8"
           enter-to-class="opacity-100 transform translate-y-0"
         >
-          <div v-if="isVisible" class="space-y-4">
+          <div v-show="isVisible" class="space-y-4">
             <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">
               SZOLGÁLTATÁSOK
             </h2>
@@ -129,7 +129,7 @@ onBeforeUnmount(() => {
             enter-to-class="opacity-100 transform translate-y-0 scale-100"
           >
             <div
-              v-if="animatedItems[index]"
+              v-show="animatedItems[index]"
               class="relative p-8 rounded-2xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/10"
             >
               <!-- Icon with animated background -->
@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
         enter-from-class="opacity-0 transform translate-y-8"
         enter-to-class="opacity-100 transform translate-y-0"
       >
-        <div v-if="isVisible" class="text-center mt-16">
+        <div v-show="isVisible" class="text-center mt-16">
           <p class="text-lg sm:text-xl text-light mb-8 max-w-2xl mx-auto">
             Minden szolgáltatásunk egy cél felé irányul:
             <span class="text-primary font-semibold"
