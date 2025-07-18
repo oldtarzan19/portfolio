@@ -1,32 +1,65 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * const {onCall} = require("firebase-functions/v2/https");
- * const {onDocumentWritten} = require("firebase-functions/v2/firestore");
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+// functions/index.js
+const admin = require('firebase-admin');
+admin.initializeApp();
 
-const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
-const logger = require("firebase-functions/logger");
+const express = require('express');
+const cors = require('cors');
+const { onRequest } = require('firebase-functions/v2/https');
+const Mailgun = require('mailgun.js');
+const formData = require('form-data');
 
-// For cost control, you can set the maximum number of containers that can be
-// running at the same time. This helps mitigate the impact of unexpected
-// traffic spikes by instead downgrading performance. This limit is a
-// per-function limit. You can override the limit for each function using the
-// `maxInstances` option in the function's options, e.g.
-// `onRequest({ maxInstances: 5 }, (req, res) => { ... })`.
-// NOTE: setGlobalOptions does not apply to functions using the v1 API. V1
-// functions should each use functions.runWith({ maxInstances: 10 }) instead.
-// In the v1 API, each function can only serve one request per container, so
-// this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
+// Mailgun kliens
+const mailgun = new Mailgun(formData);
+const mgClient = mailgun.client({
+  username: 'api',
+  key: '',      // vagy functions.config().mailgun.key
+  url: 'https://api.eu.mailgun.net'
+});
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// Express app
+const app = express();
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// 1. CORS beállítás: csak a trusted domainek
+const allowedOrigins = [
+  'https://pixelcode-portfolio.web.app',
+  'https://pixelcode.hu'
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`CORS tiltva az origin miatt: ${origin}`));
+  }
+};
+
+// Middleware-ek
+app.use(cors(corsOptions));    // automatikusan kezeli az OPTIONS és a POST kéréseket
+app.use(express.json());       // JSON body parse
+
+// POST handler
+app.post('/', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'Minden mezőt ki kell tölteni' });
+    }
+    const domain = 'md.pixelcode.hu'; // Mailgun domain
+    const result = await mgClient.messages.create(domain, {
+      from: `${name} <${email}>`,
+      to: 'zsofenszki.kristof@gmail.com',
+      subject: 'Új üzenet a weboldalról',
+      text: message
+    });
+    return res.status(200).json({ success: true, id: result.id });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+// Export Gen2 HTTP function
+exports.sendContactEmail = onRequest(
+  { region: 'europe-west1' },  // régió
+  app
+);
