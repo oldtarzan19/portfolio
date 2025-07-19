@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import axios from 'axios'
-import { Mail, Clock, CheckCircle, Send } from 'lucide-vue-next'
+import { Mail, Clock, CheckCircle, Send, XCircle } from 'lucide-vue-next'
 import BaseButton from '@/components/global/BaseButton.vue'
 
 const contactContainer = ref(null)
@@ -18,6 +18,7 @@ const formData = ref({
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
+const isError = ref(false)
 const errorMessage = ref('')
 const FUNCTION_URL = 'https://europe-west3-pixelcode-portfolio.cloudfunctions.net/sendContactEmail'
 
@@ -69,8 +70,8 @@ const handleSubmit = async () => {
   if (
     !formData.value.name.trim() ||
     !formData.value.email.trim() ||
-    !formData.value.message.trim()
-    || !formData.value.privacyAccepted
+    !formData.value.message.trim() ||
+    !formData.value.privacyAccepted
   ) {
     errorMessage.value = 'Kérlek tölts ki minden mezőt!'
     return
@@ -102,11 +103,22 @@ const handleSubmit = async () => {
       formData.value.name = ''
       formData.value.email = ''
       formData.value.message = ''
+      formData.value.privacyAccepted = false
       isSubmitted.value = false
     }, 3000)
   } catch (err) {
     console.error('sendContactEmail error:', err)
-    errorMessage.value = 'Hiba történt az üzenet küldésekor.'
+    errorMessage.value = 'Hiba történt az üzenet küldésekor. Kérlek próbáld újra később.'
+    isError.value = true
+    setTimeout(() => {
+      errorMessage.value = ''
+      isError.value = false
+
+      formData.value.name = ''
+      formData.value.email = ''
+      formData.value.message = ''
+      formData.value.privacyAccepted = false
+    }, 5000)
   } finally {
     isSubmitting.value = false
   }
@@ -300,8 +312,28 @@ onBeforeUnmount(() => {
                 </div>
               </transition>
 
+              <!-- Error Message -->
+              <transition
+                enter-active-class="transition-all duration-500 ease-out"
+                enter-from-class="opacity-0 transform scale-95"
+                enter-to-class="opacity-100 transform scale-100"
+                leave-active-class="transition-all duration-500 ease-out"
+                leave-from-class="opacity-100 transform scale-100"
+                leave-to-class="opacity-0 transform scale-95"
+              >
+                <div v-if="isError" class="text-center py-12 space-y-4">
+                  <div
+                    class="inline-flex items-center justify-center w-16 h-16 bg-red-500/20 rounded-full mb-4"
+                  >
+                    <XCircle class="w-8 h-8 text-red-400" />
+                  </div>
+                  <h5 class="text-xl font-bold text-white">Hiba történt!</h5>
+                  <p class="text-light">{{ errorMessage }}</p>
+                </div>
+              </transition>
+
               <!-- Contact Form -->
-              <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="space-y-6">
+              <form v-if="!isSubmitted && !isError" @submit.prevent="handleSubmit" class="space-y-6">
                 <!-- Name Field -->
                 <div>
                   <label class="block text-light text-sm font-medium mb-2"> Név * </label>
@@ -390,7 +422,11 @@ onBeforeUnmount(() => {
                   <BaseButton
                     type="submit"
                     :disabled="
-                      isSubmitting || !formData.name || !formData.email || !formData.message || !formData.privacyAccepted
+                      isSubmitting ||
+                      !formData.name ||
+                      !formData.email ||
+                      !formData.message ||
+                      !formData.privacyAccepted
                     "
                     class="w-full py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >

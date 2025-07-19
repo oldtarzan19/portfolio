@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "format": "prettier --write src/",
-    "deploy": "npm run build && firebase deploy"
+    "deploy": "npm run build && firebase deploy",
+    "deploy-functions": "firebase deploy --only functions",
+    "deploy-hosting": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
