@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import axios from 'axios'
 import { Mail, Clock, CheckCircle, Send } from 'lucide-vue-next'
 import BaseButton from '@/components/global/BaseButton.vue'
 
@@ -12,10 +13,13 @@ const formData = ref({
   name: '',
   email: '',
   message: '',
+  privacyAccepted: false,
 })
 
 const isSubmitting = ref(false)
 const isSubmitted = ref(false)
+const errorMessage = ref('')
+const FUNCTION_URL = 'https://europe-west3-pixelcode-portfolio.cloudfunctions.net/sendContactEmail'
 
 // Marketing points
 const marketingPoints = [
@@ -61,23 +65,51 @@ const observerCallback = (entries) => {
 }
 
 const handleSubmit = async () => {
-  if (!formData.value.name || !formData.value.email || !formData.value.message) {
+  // 1) Validáció
+  if (
+    !formData.value.name.trim() ||
+    !formData.value.email.trim() ||
+    !formData.value.message.trim()
+    || !formData.value.privacyAccepted
+  ) {
+    errorMessage.value = 'Kérlek tölts ki minden mezőt!'
     return
   }
 
   isSubmitting.value = true
+  errorMessage.value = ''
 
-  // Simulate form submission
-  setTimeout(() => {
-    isSubmitting.value = false
+  try {
+    // 2) POST a Cloud Function URL-re
+    await axios.post(
+      FUNCTION_URL,
+      {
+        name: formData.value.name,
+        email: formData.value.email,
+        message: formData.value.message,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+
+    // 3) Sikeres küldés
     isSubmitted.value = true
-
-    // Reset form after success message
+    // űrlap reset és success message
     setTimeout(() => {
-      formData.value = { name: '', email: '', message: '' }
+      formData.value.name = ''
+      formData.value.email = ''
+      formData.value.message = ''
       isSubmitted.value = false
     }, 3000)
-  }, 1500)
+  } catch (err) {
+    console.error('sendContactEmail error:', err)
+    errorMessage.value = 'Hiba történt az üzenet küldésekor.'
+  } finally {
+    isSubmitting.value = false
+  }
 }
 
 let observer
@@ -125,9 +157,7 @@ onBeforeUnmount(() => {
       <div class="text-center mb-16">
         <div
           class="space-y-4 transition-all duration-1000 ease-out"
-          :class="isVisible
-            ? 'opacity-100 translate-y-0'
-            : 'opacity-0 translate-y-8'"
+          :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <h2 class="text-sm font-light tracking-wider text-light uppercase mb-4">KAPCSOLAT</h2>
           <h3
@@ -146,9 +176,7 @@ onBeforeUnmount(() => {
           <!-- Email Contact -->
           <div
             class="text-center lg:text-left transition-all duration-800 ease-out"
-            :class="isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-12'"
+            :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'"
           >
             <div class="inline-flex items-center justify-center lg:justify-start space-x-3 mb-6">
               <div class="bg-gradient-to-br from-primary/10 to-primary/5 p-3 rounded-full">
@@ -171,9 +199,11 @@ onBeforeUnmount(() => {
             <div v-for="(point, index) in marketingPoints" :key="index">
               <div
                 class="group flex items-start space-x-4 p-6 rounded-xl bg-gradient-to-br from-secondary/30 to-dark/50 border border-secondary/20 hover:border-primary/30 transition-all duration-800 ease-out"
-                :class="animatedItems[index]
-                  ? 'opacity-100 translate-y-0 scale-100'
-                  : 'opacity-0 translate-y-12 scale-95'"
+                :class="
+                  animatedItems[index]
+                    ? 'opacity-100 translate-y-0 scale-100'
+                    : 'opacity-0 translate-y-12 scale-95'
+                "
               >
                 <!-- Icon -->
                 <div class="relative flex-shrink-0">
@@ -210,14 +240,12 @@ onBeforeUnmount(() => {
           <!-- Trust Message -->
           <div
             class="text-center lg:text-left transition-all duration-800 ease-out delay-500"
-            :class="isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'"
+            :class="isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
           >
             <p class="text-light text-lg leading-relaxed">
               Minden projekt egyedi kihívás számomra.
               <span class="text-primary font-semibold"
-              >Közösen alakítjuk ki a tökéletes megoldást</span
+                >Közösen alakítjuk ki a tökéletes megoldást</span
               >
               az elképzeléseid alapján.
             </p>
@@ -227,11 +255,15 @@ onBeforeUnmount(() => {
         <!-- Right Side - Contact Form -->
         <div
           class="transition-all duration-1000 ease-out"
-          :class="animatedItems[marketingPoints.length]
-            ? 'opacity-100 translate-y-0 scale-100'
-            : 'opacity-0 translate-y-12 scale-95'"
+          :class="
+            animatedItems[marketingPoints.length]
+              ? 'opacity-100 translate-y-0 scale-100'
+              : 'opacity-0 translate-y-12 scale-95'
+          "
         >
-          <div class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+          <div
+            class="bg-gradient-to-br from-secondary/40 to-dark/60 border border-secondary/30 rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden"
+          >
             <!-- Form Background Effect -->
             <div
               class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/50 opacity-50"
@@ -272,9 +304,7 @@ onBeforeUnmount(() => {
               <form v-if="!isSubmitted" @submit.prevent="handleSubmit" class="space-y-6">
                 <!-- Name Field -->
                 <div>
-                  <label class="block text-light text-sm font-medium mb-2">
-                    Név *
-                  </label>
+                  <label class="block text-light text-sm font-medium mb-2"> Név * </label>
                   <input
                     v-model="formData.name"
                     type="text"
@@ -286,9 +316,7 @@ onBeforeUnmount(() => {
 
                 <!-- Email Field -->
                 <div>
-                  <label class="block text-light text-sm font-medium mb-2">
-                    Email cím *
-                  </label>
+                  <label class="block text-light text-sm font-medium mb-2"> Email cím * </label>
                   <input
                     v-model="formData.email"
                     type="email"
@@ -341,7 +369,10 @@ onBeforeUnmount(() => {
                       </svg>
                     </label>
                   </div>
-                  <label for="privacy-checkbox" class="text-sm text-light leading-relaxed cursor-pointer">
+                  <label
+                    for="privacy-checkbox"
+                    class="text-sm text-light leading-relaxed cursor-pointer"
+                  >
                     Elfogadom az
                     <a
                       href="/adatvedelmi-tajekoztato"
@@ -359,7 +390,7 @@ onBeforeUnmount(() => {
                   <BaseButton
                     type="submit"
                     :disabled="
-                      isSubmitting || !formData.name || !formData.email || !formData.message
+                      isSubmitting || !formData.name || !formData.email || !formData.message || !formData.privacyAccepted
                     "
                     class="w-full py-3 px-6 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
@@ -376,8 +407,6 @@ onBeforeUnmount(() => {
     </div>
   </section>
 </template>
-
-
 
 <style scoped>
 /* Custom scrollbar for textarea */
