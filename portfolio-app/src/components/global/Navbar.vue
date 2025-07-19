@@ -17,7 +17,7 @@ const navItems = [
 
 // Scroll-figyelő a sticky effekthez
 const handleScroll = () => {
-  isSticky.value = window.pageYOffset > 50
+  isSticky.value = window.scrollY > 50
 }
 
 // Smooth scroll és mobil menü csukása kattintás után
