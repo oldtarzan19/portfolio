@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue'
+import Logo from '@/assets/logo_transparent.png'
 
 // Állapotok
 const isSticky = ref(false)
@@ -85,29 +86,35 @@ watch(isMobileMenuOpen, (open) => {
   </nav>
 
   <!-- MOBILE HAMBURGER GOMB -->
-  <button
-    class="md:hidden fixed top-5 right-4 z-50 flex flex-col items-center justify-center w-8 h-8 space-y-1 mobile-menu-container text-primary"
-    @click="toggleMobileMenu"
+  <div
+    class="md:hidden bg-transparent fixed top-0 left-1/2 transform -translate-x-1/2 w-[95%] max-w-4xl z-50 flex items-center justify-between px-6 py-4"
   >
-    <span
-      :class="[
-        'w-6 h-0.5 bg-current transition-all duration-300',
-        isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : '',
-      ]"
-    ></span>
-    <span
-      :class="[
-        'w-6 h-0.5 bg-current transition-all duration-300',
-        isMobileMenuOpen ? 'opacity-0' : '',
-      ]"
-    ></span>
-    <span
-      :class="[
-        'w-6 h-0.5 bg-current transition-all duration-300',
-        isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : '',
-      ]"
-    ></span>
-  </button>
+    <img :src="Logo" alt="Logo" class="h-14 w-auto object-contain bg-transparent" />
+
+    <button
+      class="flex flex-col items-center justify-center w-8 h-8 space-y-1 mobile-menu-container text-primary"
+      @click="toggleMobileMenu"
+    >
+      <span
+        :class="[
+          'w-6 h-0.5 bg-current transition-all duration-300',
+          isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : '',
+        ]"
+      ></span>
+      <span
+        :class="[
+          'w-6 h-0.5 bg-current transition-all duration-300',
+          isMobileMenuOpen ? 'opacity-0' : '',
+        ]"
+      ></span>
+      <span
+        :class="[
+          'w-6 h-0.5 bg-current transition-all duration-300',
+          isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : '',
+        ]"
+      ></span>
+    </button>
+  </div>
 
   <!-- MOBILE SIDEBAR -->
   <div
